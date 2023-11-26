@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  dev-db:
+    image: postgres:16.1-alpine3.18
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./dev-db:/var/lib/postgresql/data
+    networks:
+      - freecodecamp
+
+  pgadmin4:
+    image: dpage/pgadmin4:7.8
+    container_name: pgadmin4-postgres
+    ports:
+      - '8080:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=superman@google.com
+      - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - dev-db
+
+volumes:
+  dev-db:
+    external: false
+
+networks:
+  freecodecamp:

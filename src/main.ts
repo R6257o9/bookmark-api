@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const logger = new Logger('Main - Todo App (main.ts)');
+  const logger = new Logger('Main - Bookmark API (main.ts)');
   const app = await NestFactory.create(AppModule, { cors: true });
 
   app.setGlobalPrefix('api/v1');
