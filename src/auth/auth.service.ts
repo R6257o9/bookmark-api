@@ -21,6 +21,7 @@ export class AuthService {
         hash,
       },
     });
+    // provisory
     delete user.hash;
     // return the saved user
     return user;
