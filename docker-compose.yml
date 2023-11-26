@@ -13,16 +13,18 @@ services:
     networks:
       - freecodecamp
 
-  pgadmin4:
-    image: dpage/pgadmin4:7.8
-    container_name: pgadmin4-postgres
+  test-db:
+    image: postgres:16.1-alpine3.18
     ports:
-      - '8080:80'
+      - 5434:5432
     environment:
-      - PGADMIN_DEFAULT_EMAIL=superman@google.com
-      - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD}
-    depends_on:
-      - dev-db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./dev-db:/var/lib/postgresql/data
+    networks:
+      - freecodecamp
 
 volumes:
   dev-db:
