@@ -9,7 +9,7 @@ import { CreateAuthDto } from './dto/create-user.auth.dto';
 export class AuthService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async signup(createAuthDto: CreateAuthDto) {
+  async signUp(createAuthDto: CreateAuthDto) {
     const { email, password } = createAuthDto;
 
     // generate password hash
@@ -38,7 +38,7 @@ export class AuthService {
     }
   }
 
-  async signin(createAuthDto: CreateAuthDto) {
+  async signIn(createAuthDto: CreateAuthDto) {
     const { email, password } = createAuthDto;
 
     // find the user by email
