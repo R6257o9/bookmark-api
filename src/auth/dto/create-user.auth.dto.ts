@@ -20,4 +20,12 @@ export class CreateAuthDto {
       'The password must have a Uppercase, lowercase letter and a number',
   })
   password: string;
+
+  @IsString()
+  @MinLength(3)
+  firstName: string;
+
+  @IsString()
+  @MinLength(3)
+  lastName: string;
 }

@@ -16,7 +16,7 @@ export class AuthService {
   ) {}
 
   async signUp(createAuthDto: CreateAuthDto) {
-    const { email, password } = createAuthDto;
+    const { email, password, firstName, lastName } = createAuthDto;
 
     // generate password hash
     const hash = await argon.hash(password);
@@ -26,6 +26,8 @@ export class AuthService {
       const user = await this.prismaService.user.create({
         data: {
           email,
+          firstName,
+          lastName,
           hash,
         },
       });
@@ -59,7 +61,6 @@ export class AuthService {
 
     // if password incorrect throw exception
     if (!passwordMatches) throw new ForbiddenException('Credentials incorrect');
-
     return this.signToken(user.id, user.email);
   }
 
