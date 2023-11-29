@@ -29,8 +29,6 @@ services:
 volumes:
   dev-db:
     external: false
-  test-db:
-    external: false
 
 networks:
   freecodecamp:
